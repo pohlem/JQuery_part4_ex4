@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang='fr'>
+<head>
+  <meta charset='utf-8' />
+  <meta name='viewport' content='width=device-width, initial-scale=1'>
+  <script src='assets/JQuery/jquery-3.2.1.js'></script>
+  <title>Exercice 4</title>
+</head>
+<body>
+	<h1>Créer Compte</h1>
+    <form>
+		<label>Nom</label>
+		<input type='text' class='info' id='lastName' name='lastName' placeholder='Nom'>
+		<label>Prénom</label>
+		<input type='text' class='info' id='firstName' name='firstName' placeholder='Prénom'>
+		<label>Date de Naissance</label>
+		<input type='date' class='info' id='dateBorn' name='dateBorn' placeholder='JJ/MM/AA'>
+		<label>Lieu de Naissance</label>
+		<input type='text' class='info' id='placeBorn' name='placeBorn' placeholder='Ville'>
+		<label>Emploi</label>
+		<input type='text' class='info' id='job' name='job' placeholder='Emploi'>
+		<label>Société</label>
+		<input type='text' id='company' name='company' placeholder='Société'>
+		<input type='button' id='submit' name='submit' value='Générer'>
+    </form>
+  <script>
+  	$(function(){
+  	var present;
+  		function init(){
+  			$('#lastName').css('border', '1px solid black');
+  			$('#firstName').css('border', '1px solid black');
+  			$('#dateBorn').css('border', '1px solid black');
+  			$('#placeBorn').css('border', '1px solid black');
+  			$('#job').css('border', '1px solid black');
+  			$('#company').css('border', '1px solid black');
+  		}
+	$('#submit').click(function(event){
+		console.log($('#dateBorn').val());
+		init();
+		correct = true;
+		lastName= $('#lastName').val();
+		regex = RegExp('[^a-zA-Z-]');
+		if(regex.test(lastName) || lastName==''){
+			console.log('error');
+			$('#lastName').css('border', '1px solid red');
+			correct=false;
+		}
+		firstName= $('#firstName').val();
+		if(regex.test(firstName) || firstName==''){
+			$('#firstName').css('border', '1px solid red');
+			correct=false;
+		}
+		dateBorn= $('#dateBorn').val();
+		if(dateBorn==''){
+			$('#dateBorn').css('border', '1px solid red');
+			correct=false;
+		}
+		placeBorn= $('#placeBorn').val();
+		regex = RegExp('[^a-zA-Z-]');
+		if(regex.test(placeBorn) || placeBorn==''){
+			$('#placeBorn').css('border', '1px solid red');
+			correct=false;
+		}
+		job= $('#job').val();
+		if(regex.test(job) || job==''){
+			$('#job').css('border', '1px solid red');
+			correct=false;
+		}
+		company= $('#company').val();
+		regex = RegExp('[^a-zA-Z\s\-]');
+		console.log(regex.test(company));
+		if(regex.test(company) || company==''){
+			$('#company').css('border', '1px solid red');
+			correct=false;
+		}
+		if(correct){
+		present = lastName+' '+firstName+', né le '+dateBorn+' à '+placeBorn+', actuellement '+job+' à '+company;	
+		alert(present);
+	}
+  });
+});
+</script>
+</body>
+</html>
